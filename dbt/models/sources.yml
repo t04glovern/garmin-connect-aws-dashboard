@@ -7,3 +7,5 @@ sources:
     tables:
       - name: garmin_stress
         identifier: garmin_stress
+      - name: garmin_sleep
+        identifier: garmin_sleep

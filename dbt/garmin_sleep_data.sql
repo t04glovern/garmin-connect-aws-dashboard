@@ -39,7 +39,57 @@ CREATE EXTERNAL TABLE IF NOT EXISTS garmin_sleep (
         ageGroup: string,
         sleepScoreFeedback: string,
         sleepScoreInsight: string,
-        sleepVersion: int
+        sleepVersion: int,
+        sleepScores: struct<
+            totalDuration: struct<
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float
+            >,
+            stress: struct<
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float
+            >,
+            awakeCount: struct<
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float
+            >,
+            overall: struct<
+                value: int,
+                qualifierKey: string
+            >,
+            remPercentage: struct<
+                value: int,
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float,
+                idealStartInSeconds: float,
+                idealEndInSeconds: float
+            >,
+            restlessness: struct<
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float
+            >,
+            lightPercentage: struct<
+                value: int,
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float,
+                idealStartInSeconds: float,
+                idealEndInSeconds: float
+            >,
+            deepPercentage: struct<
+                value: int,
+                qualifierKey: string,
+                optimalStart: float,
+                optimalEnd: float,
+                idealStartInSeconds: float,
+                idealEndInSeconds: float
+            >
+        >
     >,
     sleepMovement array<struct<
         startGMT: timestamp,
