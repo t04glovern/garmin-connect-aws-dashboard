@@ -1,0 +1,9 @@
+garmin:
+  target: dev
+  outputs:
+    dev:
+      type: athena
+      region_name: ap-southeast-2
+      schema: default
+      database: awsdatacatalog
+      s3_staging_dir: s3://athena-ap-southeast-2-536829251200/

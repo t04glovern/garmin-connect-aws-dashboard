@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: garmin
+    database: awsdatacatalog
+    schema: default
+    tables:
+      - name: garmin_stress
+        identifier: garmin_stress
