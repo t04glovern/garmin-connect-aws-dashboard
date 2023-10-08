@@ -24,7 +24,7 @@ PARTITIONED BY (
     day string
 )
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
-WITH SERDEPROPERTIES ( "timestamp.formats"="yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZ" )
+WITH SERDEPROPERTIES ( "timestamp.formats"="yyyy-MM-dd'T'HH:mm:ss.S" )
 LOCATION 's3://garmin-connection-aws-cron-s3bucket-ucg6p4b0lajd/stress/'
 TBLPROPERTIES (
     "projection.enabled" = "true",
