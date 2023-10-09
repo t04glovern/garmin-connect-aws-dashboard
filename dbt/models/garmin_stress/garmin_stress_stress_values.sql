@@ -2,8 +2,8 @@ WITH base AS (
   SELECT 
     userProfilePK,
     calendarDate,
-    element_at(t.stressValuesItem, 1) as timestampValue,
-    element_at(t.stressValuesItem, 2) as stressLevel
+    CAST(element_at(t.stressValuesItem, 1) AS bigint) as timestampValue,
+    CAST(element_at(t.stressValuesItem, 2) AS int) as stressLevel
   FROM {{ source('garmin', 'garmin_stress') }}
   CROSS JOIN UNNEST(stressValuesArray) AS t (stressValuesItem)
 )

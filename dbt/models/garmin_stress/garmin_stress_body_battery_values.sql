@@ -2,10 +2,10 @@ WITH battery_base AS (
   SELECT 
     userProfilePK,
     calendarDate,
-    element_at(t.bodyBatteryValuesArray, 1) as bodyBatteryTimestamp,
-    element_at(t.bodyBatteryValuesArray, 2) as bodyBatteryStatus,
-    element_at(t.bodyBatteryValuesArray, 3) as bodyBatteryLevel,
-    element_at(t.bodyBatteryValuesArray, 4) as bodyBatteryVersion
+    CAST(element_at(t.bodyBatteryValuesArray, 1) AS bigint) as bodyBatteryTimestamp,
+    CAST(element_at(t.bodyBatteryValuesArray, 2) AS varchar) as bodyBatteryStatus,
+    CAST(element_at(t.bodyBatteryValuesArray, 3) AS int) as bodyBatteryLevel,
+    CAST(element_at(t.bodyBatteryValuesArray, 4) AS double) as bodyBatteryVersion
   FROM {{ source('garmin', 'garmin_stress') }}
   CROSS JOIN UNNEST(bodyBatteryValuesArray) AS t (bodyBatteryValuesArray)
 )
