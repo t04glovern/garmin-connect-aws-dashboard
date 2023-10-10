@@ -65,7 +65,7 @@ wellness_epoch_spo2_base AS (
 
 SELECT 
     g.*,
-    w.wellness_epoch_start_time_gmt,
+    from_unixtime(w.wellness_epoch_start_time_gmt / 1000) AS wellness_epoch_respiration_datetime,
     w.wellness_epoch_respiration_value
 FROM garmin_sleep AS g
 LEFT JOIN wellness_epoch_spo2_base AS w

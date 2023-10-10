@@ -457,7 +457,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  wellness_epoch_start_time_gmt as dt,\r\n  wellness_epoch_respiration_value\r\nFROM $__table()\r\n",
+          "rawSQL": "SELECT \r\n  wellness_epoch_respiration_datetime,\r\n  wellness_epoch_respiration_value\r\nFROM $__table()\r\nWHERE $__timeFilter(wellness_epoch_respiration_datetime);",
           "refId": "A",
           "table": "garmin_sleep_wellness_epoch_respiration_data"
         }
@@ -467,12 +467,7 @@
         {
           "id": "convertFieldType",
           "options": {
-            "conversions": [
-              {
-                "destinationType": "time",
-                "targetField": "dt"
-              }
-            ],
+            "conversions": [],
             "fields": {}
           }
         }
@@ -708,7 +703,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -735,7 +730,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {},
