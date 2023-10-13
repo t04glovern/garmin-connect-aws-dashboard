@@ -11,6 +11,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -19,6 +25,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 1,
+  "iteration": 1697214564375,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -33,12 +40,10 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "points",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -46,7 +51,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -148,12 +152,10 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "points",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -161,7 +163,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -262,12 +263,10 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -275,7 +274,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": 3600000,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -376,12 +374,10 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -389,7 +385,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": 3600000,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -485,12 +480,10 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -498,7 +491,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -599,12 +591,10 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -612,7 +602,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -704,7 +693,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -713,7 +702,7 @@
         "current": {
           "selected": false,
           "text": "Athena",
-          "value": "P412B726DC9DC6F02"
+          "value": "Athena"
         },
         "hide": 0,
         "includeAll": false,
@@ -730,7 +719,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
