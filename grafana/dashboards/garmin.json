@@ -25,7 +25,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1697214564375,
+  "iteration": 1697264128355,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -43,7 +43,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "bars",
+            "drawStyle": "points",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -119,7 +119,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  sleep_restless_start_gmt as dt,\r\n  sleep_restless_value\r\nFROM $__table()",
+          "rawSQL": "SELECT \r\n  sleep_restless_start_gmt as dt,\r\n  sleep_restless_value\r\n  year, month, day\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) AND year <= SUBSTR('${__to:date}', 1, 4)\r\nAND month >= SUBSTR('${__from:date}', 6, 2) AND month <= SUBSTR('${__to:date}', 6, 2)\r\nAND day >= SUBSTR('${__from:date}', 9, 2) AND day <= SUBSTR('${__to:date}', 9, 2)",
           "refId": "A",
           "table": "garmin_sleep_sleep_restless_moments"
         }
@@ -155,7 +155,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "bars",
+            "drawStyle": "points",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -230,7 +230,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  sleep_levels_start_gmt as dt,\r\n  sleep_levels_activity_level\r\nFROM $__table()",
+          "rawSQL": "SELECT \r\n  sleep_levels_start_gmt as dt,\r\n  sleep_levels_activity_level\r\n  year, month, day\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) AND year <= SUBSTR('${__to:date}', 1, 4)\r\nAND month >= SUBSTR('${__from:date}', 6, 2) AND month <= SUBSTR('${__to:date}', 6, 2)\r\nAND day >= SUBSTR('${__from:date}', 9, 2) AND day <= SUBSTR('${__to:date}', 9, 2)",
           "refId": "A",
           "table": "garmin_sleep_sleep_levels"
         }
@@ -341,7 +341,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  wellness_epoch_timestamp as dt,\r\n  wellness_epoch_spo2_reading\r\nFROM $__table()",
+          "rawSQL": "SELECT \r\n  wellness_epoch_timestamp as dt,\r\n  wellness_epoch_spo2_reading\r\n  year, month, day\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) AND year <= SUBSTR('${__to:date}', 1, 4)\r\nAND month >= SUBSTR('${__from:date}', 6, 2) AND month <= SUBSTR('${__to:date}', 6, 2)\r\nAND day >= SUBSTR('${__from:date}', 9, 2) AND day <= SUBSTR('${__to:date}', 9, 2) ",
           "refId": "A",
           "table": "garmin_sleep_wellness_epoch_spo2_data"
         }
@@ -452,7 +452,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  wellness_epoch_respiration_datetime,\r\n  wellness_epoch_respiration_value\r\nFROM $__table()\r\nWHERE $__timeFilter(wellness_epoch_respiration_datetime);",
+          "rawSQL": "SELECT \r\n  wellness_epoch_respiration_datetime,\r\n  wellness_epoch_respiration_value\r\n  year, month, day\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) AND year <= SUBSTR('${__to:date}', 1, 4)\r\nAND month >= SUBSTR('${__from:date}', 6, 2) AND month <= SUBSTR('${__to:date}', 6, 2)\r\nAND day >= SUBSTR('${__from:date}', 9, 2) AND day <= SUBSTR('${__to:date}', 9, 2)",
           "refId": "A",
           "table": "garmin_sleep_wellness_epoch_respiration_data"
         }
@@ -558,7 +558,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  bodyBatteryTimestamp as dt,\r\n  bodyBatteryLevel\r\nFROM $__table()",
+          "rawSQL": "SELECT \r\n  bodyBatteryTimestamp as dt,\r\n  bodyBatteryLevel\r\n  year, month, day\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) AND year <= SUBSTR('${__to:date}', 1, 4)\r\nAND month >= SUBSTR('${__from:date}', 6, 2) AND month <= SUBSTR('${__to:date}', 6, 2)\r\nAND day >= SUBSTR('${__from:date}', 9, 2) AND day <= SUBSTR('${__to:date}', 9, 2)",
           "refId": "A",
           "table": "garmin_stress_body_battery_values"
         }
@@ -669,7 +669,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  timestampValue as dt,\r\n  stressLevel\r\nFROM $__table()",
+          "rawSQL": "SELECT \r\n  timestampValue as dt,\r\n  stressLevel,\r\n  year, month, day\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) AND year <= SUBSTR('${__to:date}', 1, 4)\r\nAND month >= SUBSTR('${__from:date}', 6, 2) AND month <= SUBSTR('${__to:date}', 6, 2)\r\nAND day >= SUBSTR('${__from:date}', 9, 2) AND day <= SUBSTR('${__to:date}', 9, 2)",
           "refId": "A",
           "table": "garmin_stress_stress_values"
         }
