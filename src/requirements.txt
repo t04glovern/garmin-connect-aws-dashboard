@@ -1,2 +1,2 @@
-garth
-boto3
+garth==0.4.38
+boto3==1.28.63

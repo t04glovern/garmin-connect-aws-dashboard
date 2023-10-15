@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   garmin-connection-aws-cron
 
-  Sample SAM Template for garmin-connection-aws-cron
+  Runs a daily lambda function to gather data from Garmin Connect and store it in S3.
 
 Globals:
   Function:
