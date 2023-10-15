@@ -9,4 +9,5 @@ pip install aws-sam-cli
 ```bash
 sam build
 sam validate
+sam deploy
 ```
