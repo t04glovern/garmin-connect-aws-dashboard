@@ -5,7 +5,6 @@ import os
 import uuid
 
 import boto3
-import garth
 from garth.http import Client
 
 logging.basicConfig(level=logging.INFO)
@@ -39,7 +38,7 @@ def sleep_data(garth_client: Client) -> dict:
     """
     try:
         return garth_client.connectapi(
-            f"/wellness-service/wellness/dailySleepData/{garth.client.username}",
+            f"/wellness-service/wellness/dailySleepData/{garth_client.username}",
             params={"date": datetime.date.today().isoformat(),
                     "nonSleepBufferMinutes": 60},
         )
