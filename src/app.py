@@ -10,6 +10,14 @@ from garth.http import Client
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+garmin_s3_bucket = os.environ['GARMIN_S3_BUCKET']
+
+garmin_user = get_secret_value(os.environ['GARMIN_USERNAME'])
+garmin_pass = get_secret_value(os.environ['GARMIN_PASSWORD'])
+
+garth_client = Client()
+garth_client.login(garmin_user, garmin_pass)
+
 
 def get_secret_value(secret_arn: str):
     """
@@ -36,14 +44,11 @@ def sleep_data(garth_client: Client) -> dict:
     Returns:
         dict: The daily sleep data for the user.
     """
-    try:
-        return garth_client.connectapi(
-            f"/wellness-service/wellness/dailySleepData/{garth_client.username}",
-            params={"date": datetime.date.today().isoformat(),
-                    "nonSleepBufferMinutes": 60},
-        )
-    except Exception as e:
-        print(e)
+    return garth_client.connectapi(
+        f"/wellness-service/wellness/dailySleepData/{garth_client.username}",
+        params={"date": datetime.date.today().isoformat(),
+                "nonSleepBufferMinutes": 60},
+    )
 
 
 def stress_data(garth_client: Client) -> dict:
@@ -56,11 +61,8 @@ def stress_data(garth_client: Client) -> dict:
     Returns:
         dict: The daily stress data for the current date for the user.
     """
-    try:
-        return garth_client.connectapi(
-            f"/wellness-service/wellness/dailyStress/{datetime.date.today().isoformat()}")
-    except Exception as e:
-        print(e)
+    return garth_client.connectapi(
+        f"/wellness-service/wellness/dailyStress/{datetime.date.today().isoformat()}")
 
 
 def lambda_handler(event, context):
@@ -71,29 +73,19 @@ def lambda_handler(event, context):
     :param context: AWS Lambda uses this parameter to provide your handler the runtime information of the Lambda function that is executing.
     :return: None
     """
-    garmin_s3_bucket = os.environ['GARMIN_S3_BUCKET']
 
-    garmin_user = get_secret_value(os.environ['GARMIN_USERNAME'])
-    garmin_pass = get_secret_value(os.environ['GARMIN_PASSWORD'])
+    client = boto3.client('s3')
 
-    garth_client = Client()
-    garth_client.login(garmin_user, garmin_pass)
+    sleep_json_data = sleep_data(garth_client=garth_client)
+    stress_json_data = stress_data(garth_client=garth_client)
 
-    try:
-        client = boto3.client('s3')
-
-        sleep_json_data = sleep_data(garth_client=garth_client)
-        client.put_object(
-            Bucket=garmin_s3_bucket,
-            Key=f'sleep/{datetime.date.today().isoformat()}/{uuid.uuid4()}.json',
-            Body=json.dumps(sleep_json_data)
-        )
-
-        stress_json_data = stress_data(garth_client=garth_client)
-        client.put_object(
-            Bucket=garmin_s3_bucket,
-            Key=f'stress/{datetime.date.today().isoformat()}/{uuid.uuid4()}.json',
-            Body=json.dumps(stress_json_data)
-        )
-    except Exception as e:
-        print(e)
+    client.put_object(
+        Bucket=garmin_s3_bucket,
+        Key=f'sleep/{datetime.date.today().isoformat()}/{uuid.uuid4()}.json',
+        Body=json.dumps(sleep_json_data)
+    )
+    client.put_object(
+        Bucket=garmin_s3_bucket,
+        Key=f'stress/{datetime.date.today().isoformat()}/{uuid.uuid4()}.json',
+        Body=json.dumps(stress_json_data)
+    )
