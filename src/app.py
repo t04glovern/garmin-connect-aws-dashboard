@@ -18,6 +18,8 @@ garmin_pass = get_secret_value(os.environ['GARMIN_PASSWORD'])
 garth_client = Client()
 garth_client.login(garmin_user, garmin_pass)
 
+client = boto3.client('s3')
+
 
 def get_secret_value(secret_arn: str):
     """
@@ -73,8 +75,6 @@ def lambda_handler(event, context):
     :param context: AWS Lambda uses this parameter to provide your handler the runtime information of the Lambda function that is executing.
     :return: None
     """
-
-    client = boto3.client('s3')
 
     sleep_json_data = sleep_data(garth_client=garth_client)
     stress_json_data = stress_data(garth_client=garth_client)
