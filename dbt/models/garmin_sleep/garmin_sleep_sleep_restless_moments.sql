@@ -67,7 +67,8 @@ sleep_restless_moments_base AS (
 SELECT
   g.*,
   r.sleep_restless_value,
-  r.sleep_restless_start_gmt
+  r.sleep_restless_start_gmt,
+  from_unixtime(r.sleep_restless_start_gmt / 1000) AS sleep_restless_start_datetime
 FROM garmin_sleep AS g
 LEFT JOIN sleep_restless_moments_base AS r 
 ON g.daily_sleep_user_profile_pk = r.userProfilePK AND g.daily_sleep_calendar_date = r.calendarDate;

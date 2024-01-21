@@ -13,6 +13,7 @@ SELECT
   userProfilePK,
   calendarDate,
   timestampValue,
+  from_unixtime(timestampValue / 1000) AS stressDatetime,
   stressLevel,
   year, month, day
 FROM base

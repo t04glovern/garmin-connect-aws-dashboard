@@ -15,6 +15,7 @@ SELECT
   userProfilePK,
   calendarDate,
   bodyBatteryTimestamp,
+  from_unixtime(bodyBatteryTimestamp / 1000) AS bodyBatteryDatetime,
   bodyBatteryStatus,
   bodyBatteryLevel,
   bodyBatteryVersion,

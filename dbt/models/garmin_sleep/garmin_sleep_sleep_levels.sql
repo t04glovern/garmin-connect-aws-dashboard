@@ -69,6 +69,8 @@ SELECT
   g.*,
   l.sleep_levels_start_gmt,
   l.sleep_levels_end_gmt,
+  date_parse(l.sleep_levels_start_gmt, '%Y-%m-%dT%H:%i:%s.%f') AS sleep_levels_start_datetime,
+  date_parse(l.sleep_levels_end_gmt, '%Y-%m-%dT%H:%i:%s.%f') AS sleep_levels_end_datetime,
   l.sleep_levels_activity_level
 FROM garmin_sleep AS g
 LEFT JOIN sleep_levels_base AS l 

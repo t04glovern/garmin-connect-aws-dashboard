@@ -19,9 +19,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS garmin_stress (
     bodyBatteryValuesArray array<array<string>>
 )
 PARTITIONED BY (
-    year string,
-    month string,
-    day string
+    year int,
+    month int,
+    day int
 )
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 WITH SERDEPROPERTIES ( "timestamp.formats"="yyyy-MM-dd'T'HH:mm:ss.S" )

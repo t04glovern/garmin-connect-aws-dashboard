@@ -25,7 +25,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1697868687475,
+  "iteration": 1705820919918,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -119,7 +119,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  sleep_restless_start_gmt as dt,\r\n  sleep_restless_value\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND year <= SUBSTR('${__to:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month >= SUBSTR('${__from:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month <= SUBSTR('${__to:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day >= SUBSTR('${__from:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day <= SUBSTR('${__to:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ",
+          "rawSQL": "SELECT \r\n  sleep_restless_start_datetime as dt,\r\n  sleep_restless_value\r\nFROM $__table()\r\nWHERE CAST(year AS INTEGER) >= CAST(SUBSTR('${__from:date}', 1, 4) AS INTEGER)\r\nAND CAST(year AS INTEGER) <= CAST(SUBSTR('${__to:date}', 1, 4) AS INTEGER)\r\nAND CAST(month AS INTEGER) >= CAST(SUBSTR('${__from:date}', 6, 2) AS INTEGER)\r\nAND CAST(month AS INTEGER) <= CAST(SUBSTR('${__to:date}', 6, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) >= CAST(SUBSTR('${__from:date}', 9, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) <= CAST(SUBSTR('${__to:date}', 9, 2) AS INTEGER)\r\nAND CAST(sleep_restless_start_datetime AS DATE)\r\nBETWEEN CAST(SUBSTR('${__from:date}', 1, 10) AS DATE)\r\nAND CAST(SUBSTR('${__to:date}', 1, 10) AS DATE)",
           "refId": "A",
           "table": "garmin_sleep_sleep_restless_moments"
         }
@@ -230,7 +230,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  sleep_levels_start_gmt as dt,\r\n  sleep_levels_activity_level\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND year <= SUBSTR('${__to:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month >= SUBSTR('${__from:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month <= SUBSTR('${__to:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day >= SUBSTR('${__from:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day <= SUBSTR('${__to:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ",
+          "rawSQL": "SELECT \r\n  sleep_levels_start_datetime as dt,\r\n  sleep_levels_activity_level\r\nFROM $__table()\r\nWHERE CAST(year AS INTEGER) >= CAST(SUBSTR('${__from:date}', 1, 4) AS INTEGER)\r\nAND CAST(year AS INTEGER) <= CAST(SUBSTR('${__to:date}', 1, 4) AS INTEGER)\r\nAND CAST(month AS INTEGER) >= CAST(SUBSTR('${__from:date}', 6, 2) AS INTEGER)\r\nAND CAST(month AS INTEGER) <= CAST(SUBSTR('${__to:date}', 6, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) >= CAST(SUBSTR('${__from:date}', 9, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) <= CAST(SUBSTR('${__to:date}', 9, 2) AS INTEGER)\r\nAND CAST(sleep_levels_start_datetime AS DATE)\r\nBETWEEN CAST(SUBSTR('${__from:date}', 1, 10) AS DATE)\r\nAND CAST(SUBSTR('${__to:date}', 1, 10) AS DATE)",
           "refId": "A",
           "table": "garmin_sleep_sleep_levels"
         }
@@ -341,7 +341,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  wellness_epoch_timestamp as dt,\r\n  wellness_epoch_spo2_reading\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND year <= SUBSTR('${__to:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month >= SUBSTR('${__from:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month <= SUBSTR('${__to:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day >= SUBSTR('${__from:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day <= SUBSTR('${__to:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ",
+          "rawSQL": "SELECT \r\n  wellness_epoch_timestamp as dt,\r\n  wellness_epoch_spo2_reading\r\nFROM $__table()\r\nWHERE CAST(year AS INTEGER) >= CAST(SUBSTR('${__from:date}', 1, 4) AS INTEGER)\r\nAND CAST(year AS INTEGER) <= CAST(SUBSTR('${__to:date}', 1, 4) AS INTEGER)\r\nAND CAST(month AS INTEGER) >= CAST(SUBSTR('${__from:date}', 6, 2) AS INTEGER)\r\nAND CAST(month AS INTEGER) <= CAST(SUBSTR('${__to:date}', 6, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) >= CAST(SUBSTR('${__from:date}', 9, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) <= CAST(SUBSTR('${__to:date}', 9, 2) AS INTEGER)\r\nAND CAST(wellness_epoch_timestamp AS DATE)\r\nBETWEEN CAST(SUBSTR('${__from:date}', 1, 10) AS DATE)\r\nAND CAST(SUBSTR('${__to:date}', 1, 10) AS DATE)",
           "refId": "A",
           "table": "garmin_sleep_wellness_epoch_spo2_data"
         }
@@ -452,7 +452,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  wellness_epoch_respiration_datetime,\r\n  wellness_epoch_respiration_value\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND year <= SUBSTR('${__to:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month >= SUBSTR('${__from:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month <= SUBSTR('${__to:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day >= SUBSTR('${__from:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day <= SUBSTR('${__to:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ",
+          "rawSQL": "SELECT \r\n  wellness_epoch_respiration_datetime,\r\n  wellness_epoch_respiration_value\r\nFROM $__table()\r\nWHERE CAST(year AS INTEGER) >= CAST(SUBSTR('${__from:date}', 1, 4) AS INTEGER)\r\nAND CAST(year AS INTEGER) <= CAST(SUBSTR('${__to:date}', 1, 4) AS INTEGER)\r\nAND CAST(month AS INTEGER) >= CAST(SUBSTR('${__from:date}', 6, 2) AS INTEGER)\r\nAND CAST(month AS INTEGER) <= CAST(SUBSTR('${__to:date}', 6, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) >= CAST(SUBSTR('${__from:date}', 9, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) <= CAST(SUBSTR('${__to:date}', 9, 2) AS INTEGER)\r\nAND CAST(wellness_epoch_respiration_datetime AS DATE)\r\nBETWEEN CAST(SUBSTR('${__from:date}', 1, 10) AS DATE)\r\nAND CAST(SUBSTR('${__to:date}', 1, 10) AS DATE)",
           "refId": "A",
           "table": "garmin_sleep_wellness_epoch_respiration_data"
         }
@@ -558,7 +558,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  bodyBatteryTimestamp as dt,\r\n  bodyBatteryLevel\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND year <= SUBSTR('${__to:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month >= SUBSTR('${__from:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month <= SUBSTR('${__to:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day >= SUBSTR('${__from:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day <= SUBSTR('${__to:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ",
+          "rawSQL": "SELECT \r\n  bodyBatteryDatetime as dt,\r\n  bodyBatteryLevel\r\nFROM $__table()\r\nWHERE CAST(year AS INTEGER) >= CAST(SUBSTR('${__from:date}', 1, 4) AS INTEGER)\r\nAND CAST(year AS INTEGER) <= CAST(SUBSTR('${__to:date}', 1, 4) AS INTEGER)\r\nAND CAST(month AS INTEGER) >= CAST(SUBSTR('${__from:date}', 6, 2) AS INTEGER)\r\nAND CAST(month AS INTEGER) <= CAST(SUBSTR('${__to:date}', 6, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) >= CAST(SUBSTR('${__from:date}', 9, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) <= CAST(SUBSTR('${__to:date}', 9, 2) AS INTEGER)\r\nAND CAST(bodyBatteryDatetime AS DATE)\r\nBETWEEN CAST(SUBSTR('${__from:date}', 1, 10) AS DATE)\r\nAND CAST(SUBSTR('${__to:date}', 1, 10) AS DATE)",
           "refId": "A",
           "table": "garmin_stress_body_battery_values"
         }
@@ -669,7 +669,7 @@
             "uid": "${datasource}"
           },
           "format": 1,
-          "rawSQL": "SELECT \r\n  timestampValue as dt,\r\n  stressLevel\r\nFROM $__table()\r\nWHERE year >= SUBSTR('${__from:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND year <= SUBSTR('${__to:date}', 1, 4) -- Extract the year part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month >= SUBSTR('${__from:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND month <= SUBSTR('${__to:date}', 6, 2) -- Extract the month part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day >= SUBSTR('${__from:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ\r\nAND day <= SUBSTR('${__to:date}', 9, 2) -- Extract the day part from YYYY-MM-DDTHH:mm:ss.SSSZ",
+          "rawSQL": "SELECT \r\n  stressDatetime as dt,\r\n  stressLevel\r\nFROM $__table()\r\nWHERE CAST(year AS INTEGER) >= CAST(SUBSTR('${__from:date}', 1, 4) AS INTEGER)\r\nAND CAST(year AS INTEGER) <= CAST(SUBSTR('${__to:date}', 1, 4) AS INTEGER)\r\nAND CAST(month AS INTEGER) >= CAST(SUBSTR('${__from:date}', 6, 2) AS INTEGER)\r\nAND CAST(month AS INTEGER) <= CAST(SUBSTR('${__to:date}', 6, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) >= CAST(SUBSTR('${__from:date}', 9, 2) AS INTEGER)\r\nAND CAST(day AS INTEGER) <= CAST(SUBSTR('${__to:date}', 9, 2) AS INTEGER)\r\nAND CAST(stressDatetime AS DATE)\r\nBETWEEN CAST(SUBSTR('${__from:date}', 1, 10) AS DATE)\r\nAND CAST(SUBSTR('${__to:date}', 1, 10) AS DATE)",
           "refId": "A",
           "table": "garmin_stress_stress_values"
         }
@@ -692,7 +692,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 35,
   "style": "dark",
   "tags": [],
@@ -700,7 +700,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Athena",
           "value": "Athena"
         },
@@ -711,6 +711,7 @@
         "name": "datasource",
         "options": [],
         "query": "grafana-athena-datasource",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
