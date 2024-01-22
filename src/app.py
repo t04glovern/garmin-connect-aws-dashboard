@@ -26,12 +26,28 @@ def get_secret_value(secret_arn: str):
     return response.get('SecretString')
 
 
-def sleep_data(garth_client: Client) -> dict:
+def get_processing_date():
     """
-    Retrieves the daily sleep data for the user associated with the provided Garmin client.
+    Gets the processing date from the DATE_TO_PROCESS environment variable.
+    If the variable is not set, defaults to the previous day's date.
+
+    Returns:
+        str: The processing date as a string in ISO format.
+    """
+    if 'DATE_TO_PROCESS' in os.environ:
+        return os.environ['DATE_TO_PROCESS']
+    else:
+        yesterday = datetime.date.today() - datetime.timedelta(days=1)
+        return yesterday.isoformat()
+
+
+def sleep_data(garth_client: Client, process_date: str) -> dict:
+    """
+    Retrieves the daily sleep data for the specified date.
 
     Args:
         garth_client (Client): The Garmin Connect API client.
+        process_date (str): The date to process.
 
     Returns:
         dict: The daily sleep data for the user.
@@ -39,28 +55,28 @@ def sleep_data(garth_client: Client) -> dict:
     try:
         return garth_client.connectapi(
             f"/wellness-service/wellness/dailySleepData/{garth_client.username}",
-            params={"date": datetime.date.today().isoformat(),
-                    "nonSleepBufferMinutes": 60},
+            params={"date": process_date, "nonSleepBufferMinutes": 60},
         )
     except Exception as e:
-        print(e)
+        logger.error(e)
 
 
-def stress_data(garth_client: Client) -> dict:
+def stress_data(garth_client: Client, process_date: str) -> dict:
     """
-    Retrieves the daily stress data from the Garmin Connect API for the current date.
+    Retrieves the daily stress data for the specified date.
 
     Args:
         garth_client (Client): The Garmin Connect API client.
+        process_date (str): The date to process.
 
     Returns:
-        dict: The daily stress data for the current date for the user.
+        dict: The daily stress data for the user.
     """
     try:
         return garth_client.connectapi(
-            f"/wellness-service/wellness/dailyStress/{datetime.date.today().isoformat()}")
+            f"/wellness-service/wellness/dailyStress/{process_date}")
     except Exception as e:
-        print(e)
+        logger.error(e)
 
 
 def lambda_handler(event, context):
@@ -82,17 +98,19 @@ def lambda_handler(event, context):
     try:
         client = boto3.client('s3')
 
-        sleep_json_data = sleep_data(garth_client=garth_client)
+        process_date = get_processing_date()
+
+        sleep_json_data = sleep_data(garth_client=garth_client, process_date=process_date)
         client.put_object(
             Bucket=garmin_s3_bucket,
-            Key=f'sleep/{datetime.date.today().isoformat()}/{uuid.uuid4()}.json',
+            Key=f'sleep/{process_date}/{uuid.uuid4()}.json',
             Body=json.dumps(sleep_json_data)
         )
 
-        stress_json_data = stress_data(garth_client=garth_client)
+        stress_json_data = stress_data(garth_client=garth_client, process_date=process_date)
         client.put_object(
             Bucket=garmin_s3_bucket,
-            Key=f'stress/{datetime.date.today().isoformat()}/{uuid.uuid4()}.json',
+            Key=f'stress/{process_date}/{uuid.uuid4()}.json',
             Body=json.dumps(stress_json_data)
         )
     except Exception as e:
