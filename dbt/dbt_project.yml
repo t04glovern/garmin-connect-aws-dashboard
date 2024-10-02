@@ -35,9 +35,19 @@ models:
     # Config indicated by + and applies to all files under models/example/
     garmin_stress:
       garmin_stress_body_battery_values:
-        +materialized: view
+        +materialized: table
       garmin_stress_stress_values:
-        +materialized: view
+        +materialized: table
     garmin_sleep:
+      garmin_sleep_sleep_levels:
+        +materialized: table
+      garmin_sleep_sleep_movement:
+        +materialized: table
+      garmin_sleep_sleep_restless_moments:
+        +materialized: table
       garmin_sleep_view:
         +materialized: view
+      garmin_sleep_wellness_epoch_respiration_data:
+        +materialized: table
+      garmin_sleep_wellness_epoch_spo2_data:
+        +materialized: table

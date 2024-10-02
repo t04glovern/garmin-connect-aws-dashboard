@@ -100,18 +100,23 @@ def lambda_handler(event, context):
 
         process_date = get_processing_date()
 
+        date_obj = datetime.datetime.strptime(process_date, "%Y-%m-%d")
+        year = date_obj.strftime("%Y")
+        month = date_obj.strftime("%m")
+        day = date_obj.strftime("%d")
+
         sleep_json_data = sleep_data(garth_client=garth_client, process_date=process_date)
         client.put_object(
             Bucket=garmin_s3_bucket,
-            Key=f'sleep/{process_date}/{uuid.uuid4()}.json',
+            Key=f'sleep/year={year}/month={month}/day={day}/{uuid.uuid4()}.json',
             Body=json.dumps(sleep_json_data)
         )
 
         stress_json_data = stress_data(garth_client=garth_client, process_date=process_date)
         client.put_object(
             Bucket=garmin_s3_bucket,
-            Key=f'stress/{process_date}/{uuid.uuid4()}.json',
+            Key=f'stress/year={year}/month={month}/day={day}/{uuid.uuid4()}.json',
             Body=json.dumps(stress_json_data)
         )
     except Exception as e:
-        print(e)
+        logger.error(e)

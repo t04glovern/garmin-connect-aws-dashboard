@@ -1,6 +1,9 @@
-- name: 'default'
-  org_id: 1
-  folder: 'Garmin'
-  type: 'file'
-  options:
-    folder: '/var/lib/grafana/dashboards'
+apiVersion: 1
+
+providers:
+  - name: dashboards
+    type: file
+    updateIntervalSeconds: 30
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: true

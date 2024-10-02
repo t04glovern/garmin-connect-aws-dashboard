@@ -36,5 +36,5 @@ TBLPROPERTIES (
     "projection.day.type" = "integer",
     "projection.day.range" = "1,31",
     "projection.day.digits" = "2",
-    "storage.location.template" = "s3://garmin-connection-aws-cron-s3bucket-ucg6p4b0lajd/stress/${year}-${month}-${day}"
+    "storage.location.template" = "s3://garmin-connection-aws-cron-s3bucket-ucg6p4b0lajd/stress/year=${year}/month=${month}/day=${day}"
 );

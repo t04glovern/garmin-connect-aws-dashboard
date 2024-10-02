@@ -6,4 +6,4 @@ garmin:
       region_name: ap-southeast-2
       schema: default
       database: awsdatacatalog
-      s3_staging_dir: s3://athena-ap-southeast-2-536829251200/
+      s3_staging_dir: s3://garmin-connection-aws-cron-s3bucket-ucg6p4b0lajd/dbt/
