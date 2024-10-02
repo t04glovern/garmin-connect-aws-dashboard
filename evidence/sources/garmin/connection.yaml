@@ -1,0 +1,4 @@
+name: garmin
+type: duckdb
+options:
+  filename: garmin.duckdb
