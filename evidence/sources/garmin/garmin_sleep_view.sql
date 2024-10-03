@@ -50,6 +50,7 @@ WITH garmin_sleep AS (
     wellnessSpO2SleepSummaryDTO.averageSPO2 AS wellness_spO2_avg,
     wellnessSpO2SleepSummaryDTO.averageSpO2HR AS wellness_spO2_avg_hr,
     wellnessSpO2SleepSummaryDTO.lowestSPO2 AS wellness_spO2_lowest,
+    filename,
     year, month, day
   FROM garmin.sleep
 )
