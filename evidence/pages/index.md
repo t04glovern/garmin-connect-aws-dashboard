@@ -34,6 +34,7 @@ where daily_sleep_calendar_date between '${inputs.date_range.start}' and '${inpu
   data={daily_sleep}
   date=daily_sleep_calendar_date
   value=daily_sleep_avg_stress
+  colorPalette={['#aee2fb', '#69bce8', '#3085be']}
 />
 
 <LineChart 
@@ -55,8 +56,9 @@ where daily_sleep_calendar_date between '${inputs.date_range.start}' and '${inpu
   subtitle="The recommended amount of sleep for adults is 7-9 hours per night."
   data={daily_sleep}
   x=daily_sleep_calendar_date
-  y=daily_sleep_time_hours
-/>
+  y=daily_sleep_time_hours>
+  <ReferenceArea yMin=7 yMax=9 labelPosition=bottom color=blue/>
+</BarChart>
 
 <LineChart
   title="SpO₂ Value by Date"
@@ -64,9 +66,12 @@ where daily_sleep_calendar_date between '${inputs.date_range.start}' and '${inpu
   data={daily_sleep}
   x=daily_sleep_calendar_date
   y={[
-    'daily_sleep_avg_spo2_value',
     'daily_sleep_lowest_spo2_value',
+    'daily_sleep_avg_spo2_value',
     'daily_sleep_highest_spo2_value'
   ]}
-  step=true
-/>
+  yMin=70
+  yMax=100
+  step=true>
+  <ReferenceLine y=90 labelPosition=bottom color="red"/>
+</LineChart>
