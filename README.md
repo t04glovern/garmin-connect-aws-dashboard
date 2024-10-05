@@ -1,7 +1,7 @@
 # Install Dependencies
 
 ```bash
-pip install aws-sam-cli==1.98.0
+pip install aws-sam-cli==1.125.0
 ```
 
 ## Run

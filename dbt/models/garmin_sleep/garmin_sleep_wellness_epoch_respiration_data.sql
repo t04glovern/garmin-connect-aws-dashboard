@@ -4,6 +4,8 @@ WITH garmin_sleep AS (
     restingHeartRate,
     remSleepData,
     restlessMomentsCount,
+    avgOvernightHrv,
+    hrvStatus,
     dailySleepDTO.id AS daily_sleep_id,
     dailySleepDTO.userProfilePK AS daily_sleep_user_profile_pk,
     dailySleepDTO.calendarDate AS daily_sleep_calendar_date,

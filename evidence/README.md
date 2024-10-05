@@ -19,6 +19,7 @@ cp garmin.duckdb ../evidence/sources/garmin/garmin.duckdb
 
 ```bash
 npm install
+export NODE_OPTIONS="--max-old-space-size=12288"
 npm run sources
 npm run dev -- --host 0.0.0.0
 ```

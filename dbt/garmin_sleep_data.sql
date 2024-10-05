@@ -3,6 +3,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS garmin_sleep (
     restingHeartRate int,
     remSleepData boolean,
     restlessMomentsCount int,
+    avgOvernightHrv float,
+    hrvStatus string,
     dailySleepDTO struct<
         id: bigint,
         userProfilePK: int,
@@ -140,6 +142,10 @@ CREATE EXTERNAL TABLE IF NOT EXISTS garmin_sleep (
     >>,
     sleepBodyBattery array<struct<
         value: int,
+        startGMT: bigint
+    >>,
+    hrvData array<struct<
+        value: float,
         startGMT: bigint
     >>
 )

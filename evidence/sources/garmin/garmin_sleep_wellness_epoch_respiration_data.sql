@@ -52,9 +52,25 @@ WITH garmin_sleep AS (
     wellnessSpO2SleepSummaryDTO.averageSPO2 AS wellness_spO2_avg,
     wellnessSpO2SleepSummaryDTO.averageSpO2HR AS wellness_spO2_avg_hr,
     wellnessSpO2SleepSummaryDTO.lowestSPO2 AS wellness_spO2_lowest,
-    filename,
     year, month, day
   FROM garmin.sleep
+),
+
+wellness_epoch_spo2_base AS (
+  SELECT 
+    dailySleepDTO.userProfilePK,
+    dailySleepDTO.calendarDate,
+    t.wellnessEpochRespirationDataDTOListItem.startTimeGMT AS wellness_epoch_start_time_gmt,
+    t.wellnessEpochRespirationDataDTOListItem.respirationValue AS wellness_epoch_respiration_value
+  FROM garmin.sleep
+  CROSS JOIN UNNEST(wellnessEpochRespirationDataDTOList) AS t (wellnessEpochRespirationDataDTOListItem)
 )
 
-SELECT * FROM garmin_sleep;
+SELECT 
+  g.*,
+  w.wellness_epoch_start_time_gmt,
+  to_timestamp(w.wellness_epoch_start_time_gmt / 1000) AS wellness_epoch_respiration_datetime,
+  w.wellness_epoch_respiration_value
+FROM garmin_sleep AS g
+LEFT JOIN wellness_epoch_spo2_base AS w
+ON g.daily_sleep_user_profile_pk = w.userProfilePK AND g.daily_sleep_calendar_date = w.calendarDate;
