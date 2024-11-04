@@ -6,6 +6,7 @@ Run the [app.py](../duckdb/app.py) script to create the DuckDB database.
 
 ```bash
 cd ../duckdb
+pip install -r requirements.txt
 python app.py
 ```
 
