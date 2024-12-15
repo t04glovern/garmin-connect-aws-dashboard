@@ -16,7 +16,7 @@ def get_secret_value(secret_arn: str):
     Retrieves the secret value from AWS Secrets Manager using the provided secret ARN.
 
     Args:
-        secret_arn (str): The ARN of the secret to retrieve.
+        secret_arn (str): The ARN or name of the secret to retrieve.
 
     Returns:
         str: The secret value as a string.
@@ -74,7 +74,8 @@ def stress_data(garth_client: Client, process_date: str) -> dict:
     """
     try:
         return garth_client.connectapi(
-            f"/wellness-service/wellness/dailyStress/{process_date}")
+            f"/wellness-service/wellness/dailyStress/{process_date}"
+        )
     except Exception as e:
         logger.error(e)
 
@@ -89,8 +90,8 @@ def lambda_handler(event, context):
     """
     garmin_s3_bucket = os.environ['GARMIN_S3_BUCKET']
 
-    garmin_user = get_secret_value(os.environ['GARMIN_USERNAME'])
-    garmin_pass = get_secret_value(os.environ['GARMIN_PASSWORD'])
+    garmin_user = os.environ.get('GARMIN_USERNAME', get_secret_value('garmin-connection-aws-cron-user'))
+    garmin_pass = os.environ.get('GARMIN_PASSWORD', get_secret_value('garmin-connection-aws-cron-pass'))
 
     garth_client = Client()
     garth_client.login(garmin_user, garmin_pass)
